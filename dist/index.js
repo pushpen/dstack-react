@@ -3,6 +3,52 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var React = require('react');
 var React__default = _interopDefault(React);
 var cx = _interopDefault(require('classnames'));
+var RcTooltip = _interopDefault(require('rc-tooltip'));
+var ReactMarkdown = _interopDefault(require('react-markdown'));
+var MathJax = _interopDefault(require('react-mathjax'));
+var RemarkMathPlugin = _interopDefault(require('remark-math'));
+var reactPortal = require('react-portal');
+var Select = require('rc-select');
+var Select__default = _interopDefault(Select);
+var Slider = _interopDefault(require('rc-slider'));
+
+var image = require("./lock~ZBorChcU.svg");
+
+var css = {"forbidden":"_3PN84","message":"_2i8KH"};
+
+var AccessForbidden = function AccessForbidden(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: css.forbidden
+  }, /*#__PURE__*/React__default.createElement("img", {
+    src: image,
+    alt: "",
+    width: "85",
+    height: "104"
+  }), children && /*#__PURE__*/React__default.createElement("div", {
+    className: css.message
+  }, children));
+};
+
+var css$1 = {"avatar":"_3xvkT"};
+
+var Avatar = React.forwardRef(function (_ref, ref) {
+  var className = _ref.className,
+      name = _ref.name,
+      _ref$color = _ref.color,
+      color = _ref$color === void 0 ? 'violet' : _ref$color,
+      _ref$size = _ref.size,
+      size = _ref$size === void 0 ? 'normal' : _ref$size,
+      withBorder = _ref.withBorder,
+      onClick = _ref.onClick;
+  return /*#__PURE__*/React__default.createElement("div", {
+    ref: ref,
+    className: cx(css$1.avatar, className, color, size, {
+      border: withBorder
+    }),
+    onClick: onClick
+  }, name.slice(0, 2));
+});
 
 function _extends() {
   _extends = Object.assign || function (target) {
@@ -22,6 +68,10 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
+function _objectDestructuringEmpty(obj) {
+  if (obj == null) throw new TypeError("Cannot destructure undefined");
+}
+
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
   var target = {};
@@ -37,9 +87,9 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   return target;
 }
 
-var css = {"button":"_style-module__button__2lKoS","spinner":"_style-module__spinner__31PPt"};
+var css$2 = {"button":"_2lKoS","spinner":"_31PPt"};
 
-var css$1 = {"spinner":"_styles-module__spinner__3XhrC","spinner-animation":"_styles-module__spinner-animation__2UA3s"};
+var css$3 = {"spinner":"_3XhrC","spinner-animation":"_2UA3s"};
 
 var COLORS = {
   white: '#fff',
@@ -55,7 +105,7 @@ var Spinner = function Spinner(_ref) {
       className = _ref.className,
       align = _ref.align;
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$1.spinner, className, align, {
+    className: cx(css$3.spinner, className, align, {
       show: isShown
     })
   }, /*#__PURE__*/React__default.createElement("svg", {
@@ -101,16 +151,654 @@ var Button = React.forwardRef(function (_ref, ref) {
 
   return /*#__PURE__*/React__default.createElement(Component, _extends({
     ref: ref,
-    className: cx(css.button, size, "color-" + color, "variant-" + variant, className, {
+    className: cx(css$2.button, size, "color-" + color, "variant-" + variant, className, {
       'full-width': fullWidth
     })
   }, props), isShowSpinner && /*#__PURE__*/React__default.createElement(Spinner, {
-    className: css.spinner,
+    className: css$2.spinner,
     color: "white",
     isShown: true
   }), children);
 });
 
+var css$4 = {"checkbox":"_3lqFk","toggle-label":"_1aLAG","label":"_2PZb-","wrapper":"_2Vufp","mark":"_2Pb2f"};
+
+var CheckboxField = function CheckboxField(_ref) {
+  var className = _ref.className,
+      value = _ref.value,
+      disabled = _ref.disabled,
+      _ref$appearance = _ref.appearance,
+      appearance = _ref$appearance === void 0 ? 'checkbox' : _ref$appearance,
+      _ref$align = _ref.align,
+      align = _ref$align === void 0 ? 'left' : _ref$align,
+      label = _ref.label,
+      onLabel = _ref.onLabel,
+      offLabel = _ref.offLabel,
+      children = _ref.children,
+      props = _objectWithoutPropertiesLoose(_ref, ["className", "value", "disabled", "appearance", "align", "label", "onLabel", "offLabel", "children"]);
+
+  return /*#__PURE__*/React__default.createElement("label", {
+    className: cx(css$4.checkbox, className, appearance, align, {
+      disabled: disabled
+    })
+  }, /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("input", _extends({
+    type: "checkbox",
+    checked: value
+  }, props)), offLabel && /*#__PURE__*/React__default.createElement("span", {
+    className: cx(css$4['toggle-label'], 'off'),
+    dangerouslySetInnerHTML: {
+      __html: offLabel
+    }
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: css$4.wrapper
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$4.mark, 'mdi', 'mdi-check', {
+      'toggle-color': !(onLabel && offLabel)
+    })
+  })), onLabel && /*#__PURE__*/React__default.createElement("span", {
+    className: cx(css$4['toggle-label'], 'on'),
+    dangerouslySetInnerHTML: {
+      __html: onLabel
+    }
+  }), label && /*#__PURE__*/React__default.createElement("span", {
+    className: css$4.label
+  }, label)), children);
+};
+
+var css$5 = {"dropdown":"_1qRCw","button":"_fzNEm","menu":"_AJ1Y3","item":"_3lbfY"};
+
+var Dropdown = function Dropdown(_ref) {
+  var className = _ref.className,
+      buttonClassName = _ref.buttonClassName,
+      children = _ref.children,
+      items = _ref.items;
+
+  var _useState = React.useState(false),
+      isShow = _useState[0],
+      setIsShow = _useState[1];
+
+  var buttonRef = React.useRef(null);
+  var dropdownRef = React.useRef(null);
+  React.useEffect(function () {
+    document.body.addEventListener('click', outlineClickHandle);
+    return function () {
+      return document.body.removeEventListener('click', outlineClickHandle);
+    };
+  });
+
+  var outlineClickHandle = function outlineClickHandle(event) {
+    var targetElement = event.target;
+
+    do {
+      if (targetElement === buttonRef.current || targetElement === dropdownRef.current) return;
+      targetElement = targetElement.parentNode;
+    } while (targetElement);
+
+    if (isShow) setIsShow(false);
+  };
+
+  var onCLickButton = function onCLickButton(event) {
+    clickStopPropagation(event);
+    setIsShow(!isShow);
+  };
+
+  var clickStopPropagation = function clickStopPropagation(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  };
+
+  var onCLickItem = function onCLickItem(item) {
+    return function () {
+      setIsShow(!isShow);
+      if (item.onClick) item.onClick();
+    };
+  };
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$5.dropdown, className, {
+      active: isShow
+    })
+  }, /*#__PURE__*/React__default.createElement(RcTooltip, {
+    arrowContent: null,
+    visible: isShow,
+    placement: "bottomRight",
+    destroyTooltipOnHide: true,
+    align: {
+      offset: [0, 0]
+    },
+    overlay: /*#__PURE__*/React__default.createElement("div", {
+      className: cx(css$5.menu, 'show'),
+      ref: dropdownRef,
+      onClick: clickStopPropagation
+    }, items.map(function (i, index) {
+      return /*#__PURE__*/React__default.createElement("div", {
+        key: index,
+        className: css$5.item,
+        onClick: onCLickItem(i)
+      }, i.title);
+    }))
+  }, children ? React__default.cloneElement(children, {
+    onClick: onCLickButton,
+    ref: buttonRef
+  }) : /*#__PURE__*/React__default.createElement("div", {
+    ref: buttonRef,
+    className: cx(css$5.button, buttonClassName),
+    onClick: onCLickButton
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "mdi mdi-dots-vertical"
+  }))));
+};
+
+var css$6 = {"loader":"_18_Ho","text":"_3dZu_","stacks-pulse":"_350eA","grid":"_Uki0v","item":"_MvjKB","pic":"_Pc6fT","section":"_2EIKh"};
+
+var Loader = function Loader(_ref) {
+  _objectDestructuringEmpty(_ref);
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.loader
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.text
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.grid
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.item
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.pic
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.section
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.item
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.pic
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.section
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.item
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.pic
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: css$6.section
+  }))));
+};
+
+var MarkdownRender = function MarkdownRender(props) {
+  var newProps = _extends({}, props, {
+    plugins: [RemarkMathPlugin],
+    renderers: _extends({}, props.renderers, {
+      math: function math(props) {
+        return /*#__PURE__*/React__default.createElement(MathJax.Node, {
+          formula: props.value
+        });
+      },
+      inlineMath: function inlineMath(props) {
+        return /*#__PURE__*/React__default.createElement(MathJax.Node, {
+          inline: true,
+          formula: props.value
+        });
+      }
+    })
+  });
+
+  return /*#__PURE__*/React__default.createElement(MathJax.Provider, {
+    input: "tex"
+  }, /*#__PURE__*/React__default.createElement(ReactMarkdown, newProps));
+};
+
+var css$7 = {"modal":"_3FQ59","dialog":"_268e0","close":"_1Y7yz","title":"_knxNI"};
+
+var Modal = function Modal(_ref) {
+  var title = _ref.title,
+      className = _ref.className,
+      dialogClassName = _ref.dialogClassName,
+      _ref$size = _ref.size,
+      size = _ref$size === void 0 ? 'big' : _ref$size,
+      onClose = _ref.onClose,
+      isShow = _ref.isShow,
+      children = _ref.children,
+      withCloseButton = _ref.withCloseButton;
+
+  var onClickByLayer = function onClickByLayer(event) {
+    if (event.currentTarget === event.target && onClose) onClose();
+  };
+
+  return /*#__PURE__*/React__default.createElement(reactPortal.Portal, null, /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$7.modal, className, {
+      show: isShow
+    }),
+    onClick: onClickByLayer
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$7.dialog, size, dialogClassName)
+  }, withCloseButton && /*#__PURE__*/React__default.createElement("span", {
+    className: cx(css$7.close, 'mdi mdi-close'),
+    onClick: onClose
+  }), title && /*#__PURE__*/React__default.createElement("div", {
+    className: css$7.title
+  }, title), children)));
+};
+
+var usePrevious = (function (value) {
+  var ref = React.useRef(value);
+  React.useEffect(function () {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+});
+
+var css$8 = {"bar":"_12oWc","progress":"_3JWjz"};
+
+var ProgressBar = function ProgressBar(_ref) {
+  var className = _ref.className,
+      isActive = _ref.isActive,
+      globalProgress = _ref.progress;
+
+  var _useState = React.useState(0),
+      progress = _useState[0],
+      setProgress = _useState[1];
+
+  var _useState2 = React.useState(1000),
+      width = _useState2[0],
+      setWidth = _useState2[1];
+
+  var prevIsActive = usePrevious(isActive);
+  var step = React.useRef(0.01);
+  var currentProgress = React.useRef(0);
+  var requestFrame = React.useRef(null);
+  var ref = React.useRef(null);
+  React.useEffect(function () {
+    if (isActive) {
+      setProgress(0);
+      step.current = 0.01;
+      currentProgress.current = 0;
+      startCalculateProgress();
+    }
+
+    if (prevIsActive === true && isActive === false) {
+      if (requestFrame.current) cancelAnimationFrame(requestFrame.current);
+      setProgress(100);
+      setTimeout(function () {
+        return setProgress(0);
+      }, 800);
+    }
+
+    if (isActive === null) {
+      if (requestFrame.current) cancelAnimationFrame(requestFrame.current);
+      setProgress(0);
+    }
+  }, [isActive]);
+  React.useEffect(function () {
+    if (globalProgress !== null) setProgress(globalProgress);else {
+      setProgress(0);
+    }
+  }, [globalProgress]);
+  React.useEffect(function () {
+    window.addEventListener('resize', onResize);
+    if (ref.current) setWidth(ref.current.offsetWidth);
+    return function () {
+      return window.removeEventListener('resize', onResize);
+    };
+  }, []);
+
+  var startCalculateProgress = function startCalculateProgress() {
+    requestAnimationFrame(calculateProgress);
+  };
+
+  var calculateProgress = React.useCallback(function () {
+    currentProgress.current += step.current;
+    var progress = Math.round(Math.atan(currentProgress.current) / (Math.PI / 2) * 100 * 1000) / 1000;
+    setProgress(progress);
+    if (progress > 70) step.current = 0.005;
+    if (progress >= 100) cancelAnimationFrame(requestFrame.current);
+    requestFrame.current = requestAnimationFrame(calculateProgress);
+  }, [isActive]);
+
+  var onResize = function onResize() {
+    if (ref.current) setWidth(ref.current.offsetWidth);
+  };
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    ref: ref,
+    className: cx(css$8.bar, className)
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: css$8.progress,
+    style: {
+      width: progress + "%",
+      backgroundSize: width + "px 5px"
+    }
+  }));
+};
+
+var css$9 = {"field":"_3WCaE","input":"_9Tk5W","label":"_1mHtq","error":"_3jOrk"};
+
+var TextField = function TextField(_ref) {
+  var label = _ref.label,
+      className = _ref.className,
+      _ref$size = _ref.size,
+      size = _ref$size === void 0 ? 'normal' : _ref$size,
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      props = _objectWithoutPropertiesLoose(_ref, ["label", "className", "size", "errors"]);
+
+  var hasErrors = Boolean(errors.length);
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$9.field, className, size, {
+      disabled: props.disabled
+    })
+  }, /*#__PURE__*/React__default.createElement("label", null, label && /*#__PURE__*/React__default.createElement("div", {
+    className: css$9.label
+  }, label), /*#__PURE__*/React__default.createElement("div", {
+    className: css$9.input
+  }, /*#__PURE__*/React__default.createElement("input", _extends({
+    className: cx({
+      error: hasErrors
+    })
+  }, props))), hasErrors && /*#__PURE__*/React__default.createElement("div", {
+    className: css$9.error
+  }, errors.join(', '))));
+};
+
+var css$a = {"search":"_3s1gr","field":"_17rsB","clear":"_3oKZ5","button":"_3BfRl"};
+
+var SearchField = function SearchField(_ref) {
+  var className = _ref.className,
+      showEverything = _ref.showEverything,
+      isDark = _ref.isDark,
+      props = _objectWithoutPropertiesLoose(_ref, ["className", "showEverything", "isDark"]);
+
+  var _useState = React.useState(showEverything || props.value && props.value.length),
+      isShow = _useState[0],
+      setIsShow = _useState[1];
+
+  var clear = function clear() {
+    if (props.onChange) props.onChange('');
+    if (!showEverything) setIsShow(false);
+  };
+
+  var onChangeHandle = function onChangeHandle(event) {
+    if (props.onChange) props.onChange(event.target.value);
+  };
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$a.search, className, {
+      'is-dark': isDark
+    })
+  }, isShow && /*#__PURE__*/React__default.createElement(TextField, _extends({}, props, {
+    onChange: onChangeHandle,
+    className: css$a.field
+  })), isShow && Boolean(props.value && props.value.length) && /*#__PURE__*/React__default.createElement("div", {
+    className: css$a.clear,
+    onClick: clear
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "mdi mdi-close"
+  })), isShow && !Boolean(props.value && props.value.length) && /*#__PURE__*/React__default.createElement("div", {
+    className: css$a.clear
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "mdi mdi-magnify"
+  })), !isShow && /*#__PURE__*/React__default.createElement("div", {
+    className: css$a.button,
+    onClick: function onClick() {
+      return setIsShow(true);
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "mdi mdi-magnify"
+  })));
+};
+
+var css$b = {"field":"_2jF9E","label":"_iehEi","rcSelectLoadingIcon":"_VtsrG","rcSelectDropdownSlideUpIn":"_27wr-","rcSelectDropdownSlideUpOut":"_1QVN6","rcSelectDropdownSlideDownIn":"_1vYLX","rcSelectDropdownSlideDownOut":"_1-lNh","select-field":"_1mUh_","select-field-selector":"_V9Ufm","select-field-arrow":"_c4k8s","mdi":"_2hNDK","select-field-selection-placeholder":"_2Vdv0","select-field-selection-search":"_3GdNa","select-field-selection-search-input":"_3BOaB","select-field-selection-item":"_2uDu7","select-field-item-option-checkbox":"_2K_G1","select-field-selection-item-remove":"_1k1IW","select-field-show-search":"_3EVnU","select-field-show-arrow":"_1xlmm","select-field-open":"__jEZ1","select-field-multiple":"_2YFSs","select-field-single":"_1n3qF","select-field-clear":"_Mg5xq","select-field-item-option-state":"_2yGkG","select-field-selection__choice-zoom":"_3NUb5","select-field-selection__choice-zoom-appear":"_ZO73y","select-field-selection__choice-zoom-leave":"_2i54q","select-field-dropdown":"_14ngc"};
+
+var allValue = 'all';
+
+var SelectField = function SelectField(_ref) {
+  var _ref$align = _ref.align,
+      align = _ref$align === void 0 ? 'left' : _ref$align,
+      label = _ref.label,
+      disabled = _ref.disabled,
+      placeholder = _ref.placeholder,
+      _ref$value = _ref.value,
+      propValue = _ref$value === void 0 ? [] : _ref$value,
+      className = _ref.className,
+      mode = _ref.mode,
+      onChange = _ref.onChange,
+      _ref$options = _ref.options,
+      options = _ref$options === void 0 ? [] : _ref$options,
+      _ref$showSearch = _ref.showSearch,
+      showSearch = _ref$showSearch === void 0 ? true : _ref$showSearch,
+      props = _objectWithoutPropertiesLoose(_ref, ["align", "label", "disabled", "placeholder", "value", "className", "mode", "onChange", "options", "showSearch"]);
+
+  var onChangeHandle = function onChangeHandle(value) {
+    if (value.indexOf(allValue) >= 0) if (value.length > options.length) value = [];else value = options.map(function (o) {
+      return o.value;
+    });
+    if (onChange) onChange(value);
+  };
+
+  var onSelect = function onSelect() {};
+
+  var onDeselect = function onDeselect() {};
+
+  var renderOptions = function renderOptions() {
+    return options.map(function (_ref2) {
+      var value = _ref2.value,
+          label = _ref2.label;
+      return /*#__PURE__*/React__default.createElement(Select.Option, {
+        key: value,
+        value: value
+      }, mode === 'multiple' && /*#__PURE__*/React__default.createElement(CheckboxField, {
+        readOnly: true,
+        className: "select-field-item-option-checkbox",
+        value: propValue.indexOf(value) >= 0
+      }), /*#__PURE__*/React__default.createElement("span", {
+        className: "select-field-item-option-label"
+      }, label));
+    });
+  };
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$b.field, className, align, {
+      disabled: disabled
+    })
+  }, /*#__PURE__*/React__default.createElement(Select__default, _extends({
+    value: propValue,
+    prefixCls: "select-field",
+    multiple: mode === 'multiple',
+    showArrow: true,
+    showSearch: showSearch,
+    onSelect: onSelect,
+    onDeselect: onDeselect,
+    placeholder: placeholder,
+    onChange: onChangeHandle,
+    inputIcon: /*#__PURE__*/React__default.createElement("span", {
+      className: "mdi mdi-chevron-down"
+    })
+  }, props), options.length && mode === 'multiple' && /*#__PURE__*/React__default.createElement(Select.Option, {
+    key: allValue,
+    value: allValue
+  }, /*#__PURE__*/React__default.createElement(CheckboxField, {
+    readOnly: true,
+    className: "select-field-item-option-checkbox",
+    value: propValue.length === options.length
+  }), /*#__PURE__*/React__default.createElement("span", {
+    className: "select-field-item-option-label"
+  }, "Select all")), mode === 'multiple' ? /*#__PURE__*/React__default.createElement(Select.OptGroup, null, renderOptions()) : renderOptions()), label && /*#__PURE__*/React__default.createElement("label", {
+    className: css$b.label
+  }, label));
+};
+
+var css$c = {"field":"_2_NXc","rcSliderTooltipZoomDownIn":"_2jvao","rcSliderTooltipZoomDownOut":"_2HgMB","slider":"_31Ylv","label":"_Zo_r8","rc-slider":"_1hLjI","rc-slider-rail":"_v9bxI","rc-slider-track":"__3emJ","rc-slider-handle":"_12sQ3","rc-slider-handle-dragging":"_2u63-","rc-slider-handle-click-focused":"_7xSSR","rc-slider-mark":"_1l2Qm","rc-slider-mark-text":"_2zf2c","rc-slider-mark-text-active":"_25tuh","rc-slider-step":"_3wC_L","rc-slider-dot":"_17-SM","rc-slider-dot-active":"_1eLwY","rc-slider-dot-reverse":"_Ewb1d","rc-slider-disabled":"_1YO43","rc-slider-vertical":"_12Juq","rc-slider-tooltip-zoom-down-enter":"_2a95b","rc-slider-tooltip-zoom-down-appear":"_2wvsD","rc-slider-tooltip-zoom-down-leave":"_3jMC3","rc-slider-tooltip-zoom-down-enter-active":"_1M8Be","rc-slider-tooltip-zoom-down-appear-active":"_3tu2z","rc-slider-tooltip-zoom-down-leave-active":"_P9_lk","rc-slider-tooltip":"_1PZK2","rc-slider-tooltip-hidden":"_2CvyB","rc-slider-tooltip-placement-top":"_qzmlA","rc-slider-tooltip-inner":"_27Bp4","rc-slider-tooltip-arrow":"_35-HY"};
+
+var CustomHandle = function CustomHandle(props) {
+  var style = {
+    left: props.offset + '%',
+    transform: 'translateX(-50%)'
+  };
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: props.className,
+    key: props.index,
+    style: style,
+    "data-value": props.value
+  });
+};
+
+var SliderField = function SliderField(_ref) {
+  var className = _ref.className,
+      disabled = _ref.disabled,
+      label = _ref.label,
+      onChange = _ref.onChange,
+      name = _ref.name,
+      _ref$align = _ref.align,
+      align = _ref$align === void 0 ? 'left' : _ref$align,
+      props = _objectWithoutPropertiesLoose(_ref, ["className", "disabled", "label", "onChange", "name", "align"]);
+
+  var onChangeHandle = function onChangeHandle(value) {
+    if (onChange) onChange({
+      target: {
+        value: value,
+        name: name
+      }
+    });
+  };
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$c.field, className, align, {
+      disabled: disabled
+    })
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: css$c.slider
+  }, /*#__PURE__*/React__default.createElement(Slider, _extends({
+    onChange: onChangeHandle,
+    tipFormatter: function tipFormatter(value) {
+      return "$" + value;
+    },
+    handle: CustomHandle
+  }, props))), label && /*#__PURE__*/React__default.createElement("span", {
+    className: css$c.label
+  }, label));
+};
+
+var css$d = {"field":"_2DYF1","hidden":"_3z5o2"};
+
+var StretchTitleField = function StretchTitleField(_ref) {
+  var value = _ref.value,
+      _ref$placeholder = _ref.placeholder,
+      placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,
+      className = _ref.className,
+      props = _objectWithoutPropertiesLoose(_ref, ["value", "placeholder", "className"]);
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$d.field, className)
+  }, /*#__PURE__*/React__default.createElement("input", _extends({
+    type: "text",
+    placeholder: placeholder,
+    value: value
+  }, props)), /*#__PURE__*/React__default.createElement("div", {
+    className: css$d.hidden
+  }, value.length ? value : placeholder));
+};
+
+var css$e = {"field":"_3PgPN","textarea":"_2Ok_K","label":"_1qnsP","error":"_1C6bH"};
+
+var TextAreaField = function TextAreaField(_ref) {
+  var label = _ref.label,
+      className = _ref.className,
+      _ref$size = _ref.size,
+      size = _ref$size === void 0 ? 'normal' : _ref$size,
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      props = _objectWithoutPropertiesLoose(_ref, ["label", "className", "size", "errors"]);
+
+  var hasErrors = Boolean(errors.length);
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$e.field, className, size, {
+      disabled: props.disabled
+    })
+  }, /*#__PURE__*/React__default.createElement("label", null, label && /*#__PURE__*/React__default.createElement("div", {
+    className: css$e.label
+  }, label), /*#__PURE__*/React__default.createElement("div", {
+    className: css$e.textarea
+  }, /*#__PURE__*/React__default.createElement("textarea", _extends({
+    className: cx({
+      error: hasErrors
+    })
+  }, props))), hasErrors && /*#__PURE__*/React__default.createElement("div", {
+    className: css$e.error
+  }, errors.join(', '))));
+};
+
+var css$f = {"tooltip":"_rE8Jn"};
+
+var Tooltip = function Tooltip(_ref) {
+  var children = _ref.children,
+      overlayContent = _ref.overlayContent,
+      _ref$arrowContent = _ref.arrowContent,
+      arrowContent = _ref$arrowContent === void 0 ? null : _ref$arrowContent,
+      _ref$placement = _ref.placement,
+      placement = _ref$placement === void 0 ? 'bottomLeft' : _ref$placement,
+      _ref$trigger = _ref.trigger,
+      trigger = _ref$trigger === void 0 ? ['hover'] : _ref$trigger,
+      _ref$overlayStyle = _ref.overlayStyle,
+      overlayStyle = _ref$overlayStyle === void 0 ? {
+    'pointer-events': 'none'
+  } : _ref$overlayStyle,
+      props = _objectWithoutPropertiesLoose(_ref, ["children", "overlayContent", "arrowContent", "placement", "trigger", "overlayStyle"]);
+
+  return /*#__PURE__*/React__default.createElement(RcTooltip, _extends({
+    overlayStyle: overlayStyle,
+    arrowContent: arrowContent,
+    placement: placement,
+    trigger: trigger,
+    overlay: /*#__PURE__*/React__default.createElement("div", {
+      className: css$f.tooltip
+    }, overlayContent)
+  }, props), children);
+};
+
+var css$g = {"switcher":"_3NMzC"};
+
+var ViewSwitcher = function ViewSwitcher(_ref) {
+  var _ref$value = _ref.value,
+      value = _ref$value === void 0 ? 'grid' : _ref$value,
+      onChange = _ref.onChange,
+      className = _ref.className;
+
+  var _useState = React.useState(value),
+      stateValue = _useState[0],
+      setStateValue = _useState[1];
+
+  React.useEffect(function () {
+    if (value !== stateValue) setStateValue(value);
+  }, [value]);
+
+  var toggleValue = function toggleValue() {
+    var newValue = stateValue === 'grid' ? 'list' : 'grid';
+    setStateValue(newValue);
+    if (onChange) onChange(newValue);
+  };
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$g.switcher, stateValue, className),
+    onClick: toggleValue
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "mdi mdi-view-grid"
+  }), /*#__PURE__*/React__default.createElement("span", {
+    className: "mdi mdi-view-list"
+  }));
+};
+
+exports.AccessForbidden = AccessForbidden;
+exports.Avatar = Avatar;
 exports.Button = Button;
+exports.CheckboxField = CheckboxField;
+exports.Dropdown = Dropdown;
+exports.Loader = Loader;
+exports.MarkdownRender = MarkdownRender;
+exports.Modal = Modal;
+exports.ProgressBar = ProgressBar;
+exports.SearchField = SearchField;
+exports.SelectField = SelectField;
+exports.SliderField = SliderField;
 exports.Spinner = Spinner;
+exports.StretchTitleField = StretchTitleField;
+exports.TextAreaField = TextAreaField;
+exports.TextField = TextField;
+exports.Tooltip = Tooltip;
+exports.ViewSwitcher = ViewSwitcher;
 //# sourceMappingURL=index.js.map

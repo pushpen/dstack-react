@@ -1,6 +1,6 @@
 {
   "name": "dstack-web-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": " ",
   "author": "Oleg Vavilov (olgenn)",
   "license": "SIC",
@@ -51,12 +51,20 @@
     "dist"
   ],
   "dependencies": {
+    "@mdi/font": "^5.3.45",
     "classnames": "^2.2.6",
     "postcss-css-variables": "^0.17.0",
     "postcss-custom-media": "^7.0.8",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.2.1",
-    "postcss-preset-env": "^6.7.0"
+    "postcss-preset-env": "^6.7.0",
+    "rc-select": "^11.0.5",
+    "rc-slider": "^9.3.1",
+    "rc-tooltip": "^4.2.1",
+    "react-markdown": "^4.3.1",
+    "react-mathjax": "^1.0.1",
+    "react-portal": "^4.2.1",
+    "remark-math": "^2.0.1"
   }
 }
