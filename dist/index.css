@@ -1,0 +1,228 @@
+button._style-module__button__2lKoS {
+    box-sizing: border-box;
+    border: none;
+}
+._style-module__button__2lKoS {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 18px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+._style-module__button__2lKoS[disabled] {
+        pointer-events: none;
+        opacity: .5;
+    }
+._style-module__button__2lKoS:not(.full-width) {
+        max-width: -webkit-fit-content;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
+    }
+._style-module__button__2lKoS.full-width {
+        width: 100%;
+    }
+._style-module__button__2lKoS.small {
+        height: 30px;
+    }
+@media (max-width: 980px) {
+._style-module__button__2lKoS.normal {
+            height: 36px
+    }
+        }
+@media (min-width: 981px) {
+._style-module__button__2lKoS.normal {
+            height: 40px
+    }
+        }
+@media (max-width: 980px) {
+._style-module__button__2lKoS.large {
+            height: 36px;
+            padding: 0 16px
+    }
+        }
+@media (min-width: 981px) {
+._style-module__button__2lKoS.large {
+            height: 50px;
+            padding: 0 28px
+    }
+        }
+._style-module__button__2lKoS.variant-default {
+        background-color: transparent;
+        transition: color .2s ease;
+    }
+._style-module__button__2lKoS.variant-default.color-default {
+            color: rgb(48, 52, 64);
+        }
+._style-module__button__2lKoS.variant-default.color-default:hover {
+                color: rgb(71, 114, 197);
+            }
+._style-module__button__2lKoS.variant-default.color-secondary {
+            color: rgb(180, 184, 199);
+        }
+._style-module__button__2lKoS.variant-default.color-secondary:hover {
+                color: rgb(191, 193, 203);
+            }
+._style-module__button__2lKoS.variant-default.color-primary {
+            color: rgb(80, 124, 208);
+        }
+._style-module__button__2lKoS.variant-default.color-primary:hover {
+                color: rgb(71, 114, 197);
+            }
+._style-module__button__2lKoS.variant-default.color-success {
+            color: rgb(58, 189, 134);
+        }
+._style-module__button__2lKoS.variant-default.color-success:hover {
+                color: rgb(57, 213, 147);
+            }
+._style-module__button__2lKoS.variant-default.color-fail {
+            color: rgb(235, 87, 87);
+        }
+._style-module__button__2lKoS.variant-default.color-fail:hover {
+                color: rgb(177, 45, 45);
+            }
+._style-module__button__2lKoS.variant-default.color-lilac {
+            color: rgb(187, 119, 223);
+        }
+._style-module__button__2lKoS.variant-default.color-lilac:hover {
+                color: rgb(188, 120, 224);
+            }
+._style-module__button__2lKoS.variant-contained {
+        color: rgb(255, 255, 255);
+        transition: background .2s ease;
+    }
+._style-module__button__2lKoS.variant-contained.color-default {
+            background: rgb(48, 52, 64);
+        }
+._style-module__button__2lKoS.variant-contained.color-default:hover {
+                background-color: rgb(180, 184, 199);
+            }
+._style-module__button__2lKoS.variant-contained.color-secondary {
+            background: rgb(180, 184, 199);
+        }
+._style-module__button__2lKoS.variant-contained.color-secondary:hover {
+                background-color: rgb(191, 193, 203);
+            }
+._style-module__button__2lKoS.variant-contained.color-primary {
+            background: rgb(80, 124, 208);
+        }
+._style-module__button__2lKoS.variant-contained.color-primary:hover {
+                background-color: rgb(71, 114, 197);
+            }
+._style-module__button__2lKoS.variant-contained.color-success {
+            background: rgb(58, 189, 134);
+        }
+._style-module__button__2lKoS.variant-contained.color-success:hover {
+                background-color: rgb(57, 213, 147);
+            }
+._style-module__button__2lKoS.variant-contained.color-fail {
+            background: rgb(235, 87, 87);
+        }
+._style-module__button__2lKoS.variant-contained.color-fail:hover {
+                background-color: rgb(177, 45, 45);
+            }
+._style-module__button__2lKoS.variant-contained.color-lilac {
+            background: rgb(187, 119, 223);
+        }
+._style-module__button__2lKoS.variant-contained.color-lilac:hover {
+                background-color: rgb(188, 120, 224);
+            }
+._style-module__button__2lKoS.variant-outlined {
+        border: 1px solid;
+        background-color: transparent;
+        transition: background-color .2s, color .2s ease, border-color .2s ease;
+    }
+._style-module__button__2lKoS.variant-outlined:hover {
+            color: rgb(255, 255, 255) !important;
+        }
+._style-module__button__2lKoS.variant-outlined.color-default {
+            color: rgb(48, 52, 64);
+            border-color: rgb(48, 52, 64);
+        }
+._style-module__button__2lKoS.variant-outlined.color-default:hover {
+                background-color: rgb(48, 52, 64);
+            }
+._style-module__button__2lKoS.variant-outlined.color-secondary {
+            color: rgb(180, 184, 199);
+            border-color: rgb(180, 184, 199);
+        }
+._style-module__button__2lKoS.variant-outlined.color-secondary:hover {
+                background-color: rgb(180, 184, 199);
+            }
+._style-module__button__2lKoS.variant-outlined.color-primary {
+            color: rgb(80, 124, 208);
+            border-color: rgb(80, 124, 208);
+        }
+._style-module__button__2lKoS.variant-outlined.color-primary:hover {
+                background-color: rgb(80, 124, 208);
+            }
+._style-module__button__2lKoS.variant-outlined.color-success {
+            color: rgb(58, 189, 134);
+            border-color: rgb(58, 189, 134);
+        }
+._style-module__button__2lKoS.variant-outlined.color-success:hover {
+                background-color: rgb(58, 189, 134);
+            }
+._style-module__button__2lKoS.variant-outlined.color-fail {
+            color: rgb(235, 87, 87);
+            border-color: rgb(235, 87, 87);
+        }
+._style-module__button__2lKoS.variant-outlined.color-fail:hover {
+                background-color: rgb(235, 87, 87);
+            }
+._style-module__button__2lKoS.variant-outlined.color-lilac {
+            color: rgb(187, 119, 223);
+            border-color: rgb(187, 119, 223);
+        }
+._style-module__button__2lKoS.variant-outlined.color-lilac:hover {
+                background-color: rgb(187, 119, 223);
+            }
+._style-module__button__2lKoS ._style-module__spinner__31PPt {
+        margin-right: 6px;
+    }
+
+
+._styles-module__spinner__3XhrC {
+    transition: opacity .2s;
+}
+    ._styles-module__spinner__3XhrC:not(.show) {
+        opacity: 0;
+        pointer-events: none;
+    }
+    ._styles-module__spinner__3XhrC:not(.show) > svg {
+            -webkit-animation-play-state: paused;
+                    animation-play-state: paused;
+        }
+    ._styles-module__spinner__3XhrC.show {
+        opacity: 1;
+    }
+    ._styles-module__spinner__3XhrC > svg {
+        -webkit-animation: _styles-module__spinner-animation__2UA3s 1.2s linear infinite;
+                animation: _styles-module__spinner-animation__2UA3s 1.2s linear infinite;
+    }
+    ._styles-module__spinner__3XhrC.center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    @-webkit-keyframes _styles-module__spinner-animation__2UA3s {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+    @keyframes _styles-module__spinner-animation__2UA3s {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

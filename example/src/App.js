@@ -1,10 +1,12 @@
 import React from 'react'
-
-import { ExampleComponent } from 'dstack-web-components'
 import 'dstack-web-components/dist/index.css'
 
+import { Spinner } from 'dstack-web-components'
+
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <div>
+    <Spinner isShown color="blue" size={200} />
+  </div>
 }
 
 export default App
