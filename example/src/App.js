@@ -1,11 +1,12 @@
 import React from 'react'
 import '@mdi/font/css/materialdesignicons.min.css';
-import 'dstack-web-components/dist/index.css';
+import 'dstack-react/dist/index.css';
 
-import {  } from 'dstack-web-components'
+import {} from 'dstack-react'
 
 const App = () => {
   return <div style={{display: 'flex'}}>
+
   </div>
 }
 

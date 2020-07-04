@@ -1,6 +1,6 @@
 {
-  "short_name": "dstack-web-components",
-  "name": "dstack-web-components",
+  "short_name": "dstack-react",
+  "name": "dstack-react",
   "icons": [
     {
       "src": "favicon.ico",
