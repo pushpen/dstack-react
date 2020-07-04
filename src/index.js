@@ -4,6 +4,7 @@ export { default as AccessForbidden} from "./AccessForbidden";
 export { default as Avatar} from "./Avatar";
 export { default as Button} from "./Button";
 export { default as CheckboxField} from "./CheckboxField";
+export { default as Copy} from "./Copy";
 export { default as Dropdown} from "./Dropdown";
 export { default as Loader} from "./Loader";
 export { default as MarkdownRender} from "./MarkdownRender";

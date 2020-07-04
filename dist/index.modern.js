@@ -1,5 +1,7 @@
 import React__default, { forwardRef, useState, useRef, useEffect, useCallback } from 'react';
 import cx from 'classnames';
+import copy from 'copy-to-clipboard';
+import { useTranslation } from 'react-i18next';
 import RcTooltip from 'rc-tooltip';
 import ReactMarkdown from 'react-markdown';
 import MathJax from 'react-mathjax';
@@ -201,7 +203,47 @@ var CheckboxField = function CheckboxField(_ref) {
   }, label)), children);
 };
 
-var css$5 = {"dropdown":"_1qRCw","button":"_fzNEm","menu":"_AJ1Y3","item":"_3lbfY"};
+var css$5 = {"copy":"_3J5hd","message":"_3RWnQ","button":"_2YqEb","icon":"_25GMO"};
+
+var Copy = function Copy(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      copyText = _ref.copyText,
+      successMessage = _ref.successMessage,
+      buttonTitle = _ref.buttonTitle;
+
+  var _useTranslation = useTranslation(),
+      t = _useTranslation.t;
+
+  var _useState = useState(false),
+      isShowMessage = _useState[0],
+      setIsShowMessage = _useState[1];
+
+  var onCLick = function onCLick() {
+    copy(copyText);
+    setIsShowMessage(true);
+    setTimeout(function () {
+      return setIsShowMessage(false);
+    }, 3000);
+  };
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$5.copy, className)
+  }, children ? children({
+    onClick: onCLick
+  }) : /*#__PURE__*/React__default.createElement("div", {
+    className: css$5.button,
+    onClick: onCLick
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: cx(css$5.icon, 'mdi mdi-content-copy')
+  }), buttonTitle ? buttonTitle : t('copy')), /*#__PURE__*/React__default.createElement("div", {
+    className: cx(css$5.message, {
+      'is-show': isShowMessage
+    })
+  }, successMessage ? successMessage : t('copied')));
+};
+
+var css$6 = {"dropdown":"_1qRCw","button":"_fzNEm","menu":"_AJ1Y3","item":"_3lbfY"};
 
 var Dropdown = function Dropdown(_ref) {
   var className = _ref.className,
@@ -251,7 +293,7 @@ var Dropdown = function Dropdown(_ref) {
   };
 
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$5.dropdown, className, {
+    className: cx(css$6.dropdown, className, {
       active: isShow
     })
   }, /*#__PURE__*/React__default.createElement(RcTooltip, {
@@ -263,13 +305,13 @@ var Dropdown = function Dropdown(_ref) {
       offset: [0, 0]
     },
     overlay: /*#__PURE__*/React__default.createElement("div", {
-      className: cx(css$5.menu, 'show'),
+      className: cx(css$6.menu, 'show'),
       ref: dropdownRef,
       onClick: clickStopPropagation
     }, items.map(function (i, index) {
       return /*#__PURE__*/React__default.createElement("div", {
         key: index,
-        className: css$5.item,
+        className: css$6.item,
         onClick: onCLickItem(i)
       }, i.title);
     }))
@@ -278,42 +320,42 @@ var Dropdown = function Dropdown(_ref) {
     ref: buttonRef
   }) : /*#__PURE__*/React__default.createElement("div", {
     ref: buttonRef,
-    className: cx(css$5.button, buttonClassName),
+    className: cx(css$6.button, buttonClassName),
     onClick: onCLickButton
   }, /*#__PURE__*/React__default.createElement("span", {
     className: "mdi mdi-dots-vertical"
   }))));
 };
 
-var css$6 = {"loader":"_18_Ho","text":"_3dZu_","stacks-pulse":"_350eA","grid":"_Uki0v","item":"_MvjKB","pic":"_Pc6fT","section":"_2EIKh"};
+var css$7 = {"loader":"_18_Ho","text":"_3dZu_","stacks-pulse":"_350eA","grid":"_Uki0v","item":"_MvjKB","pic":"_Pc6fT","section":"_2EIKh"};
 
 var Loader = function Loader(_ref) {
   _objectDestructuringEmpty(_ref);
 
   return /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.loader
+    className: css$7.loader
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.text
+    className: css$7.text
   }), /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.grid
+    className: css$7.grid
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.item
+    className: css$7.item
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.pic
+    className: css$7.pic
   }), /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.section
+    className: css$7.section
   })), /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.item
+    className: css$7.item
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.pic
+    className: css$7.pic
   }), /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.section
+    className: css$7.section
   })), /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.item
+    className: css$7.item
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.pic
+    className: css$7.pic
   }), /*#__PURE__*/React__default.createElement("div", {
-    className: css$6.section
+    className: css$7.section
   }))));
 };
 
@@ -340,7 +382,7 @@ var MarkdownRender = function MarkdownRender(props) {
   }, /*#__PURE__*/React__default.createElement(ReactMarkdown, newProps));
 };
 
-var css$7 = {"modal":"_3FQ59","dialog":"_268e0","close":"_1Y7yz","title":"_knxNI"};
+var css$8 = {"modal":"_3FQ59","dialog":"_268e0","close":"_1Y7yz","title":"_knxNI"};
 
 var Modal = function Modal(_ref) {
   var title = _ref.title,
@@ -358,17 +400,17 @@ var Modal = function Modal(_ref) {
   };
 
   return /*#__PURE__*/React__default.createElement(Portal, null, /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$7.modal, className, {
+    className: cx(css$8.modal, className, {
       show: isShow
     }),
     onClick: onClickByLayer
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$7.dialog, size, dialogClassName)
+    className: cx(css$8.dialog, size, dialogClassName)
   }, withCloseButton && /*#__PURE__*/React__default.createElement("span", {
-    className: cx(css$7.close, 'mdi mdi-close'),
+    className: cx(css$8.close, 'mdi mdi-close'),
     onClick: onClose
   }), title && /*#__PURE__*/React__default.createElement("div", {
-    className: css$7.title
+    className: css$8.title
   }, title), children)));
 };
 
@@ -380,7 +422,7 @@ var usePrevious = (function (value) {
   return ref.current;
 });
 
-var css$8 = {"bar":"_12oWc","progress":"_3JWjz"};
+var css$9 = {"bar":"_12oWc","progress":"_3JWjz"};
 
 var ProgressBar = function ProgressBar(_ref) {
   var className = _ref.className,
@@ -453,9 +495,9 @@ var ProgressBar = function ProgressBar(_ref) {
 
   return /*#__PURE__*/React__default.createElement("div", {
     ref: ref,
-    className: cx(css$8.bar, className)
+    className: cx(css$9.bar, className)
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: css$8.progress,
+    className: css$9.progress,
     style: {
       width: progress + "%",
       backgroundSize: width + "px 5px"
@@ -463,7 +505,7 @@ var ProgressBar = function ProgressBar(_ref) {
   }));
 };
 
-var css$9 = {"field":"_3WCaE","input":"_9Tk5W","label":"_1mHtq","error":"_3jOrk"};
+var css$a = {"field":"_3WCaE","input":"_9Tk5W","label":"_1mHtq","error":"_3jOrk"};
 
 var TextField = function TextField(_ref) {
   var label = _ref.label,
@@ -476,23 +518,23 @@ var TextField = function TextField(_ref) {
 
   var hasErrors = Boolean(errors.length);
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$9.field, className, size, {
+    className: cx(css$a.field, className, size, {
       disabled: props.disabled
     })
   }, /*#__PURE__*/React__default.createElement("label", null, label && /*#__PURE__*/React__default.createElement("div", {
-    className: css$9.label
+    className: css$a.label
   }, label), /*#__PURE__*/React__default.createElement("div", {
-    className: css$9.input
+    className: css$a.input
   }, /*#__PURE__*/React__default.createElement("input", _extends({
     className: cx({
       error: hasErrors
     })
   }, props))), hasErrors && /*#__PURE__*/React__default.createElement("div", {
-    className: css$9.error
+    className: css$a.error
   }, errors.join(', '))));
 };
 
-var css$a = {"search":"_3s1gr","field":"_17rsB","clear":"_3oKZ5","button":"_3BfRl"};
+var css$b = {"search":"_3s1gr","field":"_17rsB","clear":"_3oKZ5","button":"_3BfRl"};
 
 var SearchField = function SearchField(_ref) {
   var className = _ref.className,
@@ -514,23 +556,23 @@ var SearchField = function SearchField(_ref) {
   };
 
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$a.search, className, {
+    className: cx(css$b.search, className, {
       'is-dark': isDark
     })
   }, isShow && /*#__PURE__*/React__default.createElement(TextField, _extends({}, props, {
     onChange: onChangeHandle,
-    className: css$a.field
+    className: css$b.field
   })), isShow && Boolean(props.value && props.value.length) && /*#__PURE__*/React__default.createElement("div", {
-    className: css$a.clear,
+    className: css$b.clear,
     onClick: clear
   }, /*#__PURE__*/React__default.createElement("span", {
     className: "mdi mdi-close"
   })), isShow && !Boolean(props.value && props.value.length) && /*#__PURE__*/React__default.createElement("div", {
-    className: css$a.clear
+    className: css$b.clear
   }, /*#__PURE__*/React__default.createElement("span", {
     className: "mdi mdi-magnify"
   })), !isShow && /*#__PURE__*/React__default.createElement("div", {
-    className: css$a.button,
+    className: css$b.button,
     onClick: function onClick() {
       return setIsShow(true);
     }
@@ -539,7 +581,7 @@ var SearchField = function SearchField(_ref) {
   })));
 };
 
-var css$b = {"field":"_2jF9E","label":"_iehEi","rcSelectLoadingIcon":"_VtsrG","rcSelectDropdownSlideUpIn":"_27wr-","rcSelectDropdownSlideUpOut":"_1QVN6","rcSelectDropdownSlideDownIn":"_1vYLX","rcSelectDropdownSlideDownOut":"_1-lNh","select-field":"_1mUh_","select-field-selector":"_V9Ufm","select-field-arrow":"_c4k8s","mdi":"_2hNDK","select-field-selection-placeholder":"_2Vdv0","select-field-selection-search":"_3GdNa","select-field-selection-search-input":"_3BOaB","select-field-selection-item":"_2uDu7","select-field-item-option-checkbox":"_2K_G1","select-field-selection-item-remove":"_1k1IW","select-field-show-search":"_3EVnU","select-field-show-arrow":"_1xlmm","select-field-open":"__jEZ1","select-field-multiple":"_2YFSs","select-field-single":"_1n3qF","select-field-clear":"_Mg5xq","select-field-item-option-state":"_2yGkG","select-field-selection__choice-zoom":"_3NUb5","select-field-selection__choice-zoom-appear":"_ZO73y","select-field-selection__choice-zoom-leave":"_2i54q","select-field-dropdown":"_14ngc"};
+var css$c = {"field":"_2jF9E","label":"_iehEi","rcSelectLoadingIcon":"_VtsrG","rcSelectDropdownSlideUpIn":"_27wr-","rcSelectDropdownSlideUpOut":"_1QVN6","rcSelectDropdownSlideDownIn":"_1vYLX","rcSelectDropdownSlideDownOut":"_1-lNh","select-field":"_1mUh_","select-field-selector":"_V9Ufm","select-field-arrow":"_c4k8s","mdi":"_2hNDK","select-field-selection-placeholder":"_2Vdv0","select-field-selection-search":"_3GdNa","select-field-selection-search-input":"_3BOaB","select-field-selection-item":"_2uDu7","select-field-item-option-checkbox":"_2K_G1","select-field-selection-item-remove":"_1k1IW","select-field-show-search":"_3EVnU","select-field-show-arrow":"_1xlmm","select-field-open":"__jEZ1","select-field-multiple":"_2YFSs","select-field-single":"_1n3qF","select-field-clear":"_Mg5xq","select-field-item-option-state":"_2yGkG","select-field-selection__choice-zoom":"_3NUb5","select-field-selection__choice-zoom-appear":"_ZO73y","select-field-selection__choice-zoom-leave":"_2i54q","select-field-dropdown":"_14ngc"};
 
 var allValue = 'all';
 
@@ -589,7 +631,7 @@ var SelectField = function SelectField(_ref) {
   };
 
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$b.field, className, align, {
+    className: cx(css$c.field, className, align, {
       disabled: disabled
     })
   }, /*#__PURE__*/React__default.createElement(Select, _extends({
@@ -615,11 +657,11 @@ var SelectField = function SelectField(_ref) {
   }), /*#__PURE__*/React__default.createElement("span", {
     className: "select-field-item-option-label"
   }, "Select all")), mode === 'multiple' ? /*#__PURE__*/React__default.createElement(OptGroup, null, renderOptions()) : renderOptions()), label && /*#__PURE__*/React__default.createElement("label", {
-    className: css$b.label
+    className: css$c.label
   }, label));
 };
 
-var css$c = {"field":"_2_NXc","rcSliderTooltipZoomDownIn":"_2jvao","rcSliderTooltipZoomDownOut":"_2HgMB","slider":"_31Ylv","label":"_Zo_r8","rc-slider":"_1hLjI","rc-slider-rail":"_v9bxI","rc-slider-track":"__3emJ","rc-slider-handle":"_12sQ3","rc-slider-handle-dragging":"_2u63-","rc-slider-handle-click-focused":"_7xSSR","rc-slider-mark":"_1l2Qm","rc-slider-mark-text":"_2zf2c","rc-slider-mark-text-active":"_25tuh","rc-slider-step":"_3wC_L","rc-slider-dot":"_17-SM","rc-slider-dot-active":"_1eLwY","rc-slider-dot-reverse":"_Ewb1d","rc-slider-disabled":"_1YO43","rc-slider-vertical":"_12Juq","rc-slider-tooltip-zoom-down-enter":"_2a95b","rc-slider-tooltip-zoom-down-appear":"_2wvsD","rc-slider-tooltip-zoom-down-leave":"_3jMC3","rc-slider-tooltip-zoom-down-enter-active":"_1M8Be","rc-slider-tooltip-zoom-down-appear-active":"_3tu2z","rc-slider-tooltip-zoom-down-leave-active":"_P9_lk","rc-slider-tooltip":"_1PZK2","rc-slider-tooltip-hidden":"_2CvyB","rc-slider-tooltip-placement-top":"_qzmlA","rc-slider-tooltip-inner":"_27Bp4","rc-slider-tooltip-arrow":"_35-HY"};
+var css$d = {"field":"_2_NXc","rcSliderTooltipZoomDownIn":"_2jvao","rcSliderTooltipZoomDownOut":"_2HgMB","slider":"_31Ylv","label":"_Zo_r8","rc-slider":"_1hLjI","rc-slider-rail":"_v9bxI","rc-slider-track":"__3emJ","rc-slider-handle":"_12sQ3","rc-slider-handle-dragging":"_2u63-","rc-slider-handle-click-focused":"_7xSSR","rc-slider-mark":"_1l2Qm","rc-slider-mark-text":"_2zf2c","rc-slider-mark-text-active":"_25tuh","rc-slider-step":"_3wC_L","rc-slider-dot":"_17-SM","rc-slider-dot-active":"_1eLwY","rc-slider-dot-reverse":"_Ewb1d","rc-slider-disabled":"_1YO43","rc-slider-vertical":"_12Juq","rc-slider-tooltip-zoom-down-enter":"_2a95b","rc-slider-tooltip-zoom-down-appear":"_2wvsD","rc-slider-tooltip-zoom-down-leave":"_3jMC3","rc-slider-tooltip-zoom-down-enter-active":"_1M8Be","rc-slider-tooltip-zoom-down-appear-active":"_3tu2z","rc-slider-tooltip-zoom-down-leave-active":"_P9_lk","rc-slider-tooltip":"_1PZK2","rc-slider-tooltip-hidden":"_2CvyB","rc-slider-tooltip-placement-top":"_qzmlA","rc-slider-tooltip-inner":"_27Bp4","rc-slider-tooltip-arrow":"_35-HY"};
 
 var CustomHandle = function CustomHandle(props) {
   var style = {
@@ -654,11 +696,11 @@ var SliderField = function SliderField(_ref) {
   };
 
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$c.field, className, align, {
+    className: cx(css$d.field, className, align, {
       disabled: disabled
     })
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: css$c.slider
+    className: css$d.slider
   }, /*#__PURE__*/React__default.createElement(Slider, _extends({
     onChange: onChangeHandle,
     tipFormatter: function tipFormatter(value) {
@@ -666,11 +708,11 @@ var SliderField = function SliderField(_ref) {
     },
     handle: CustomHandle
   }, props))), label && /*#__PURE__*/React__default.createElement("span", {
-    className: css$c.label
+    className: css$d.label
   }, label));
 };
 
-var css$d = {"field":"_2DYF1","hidden":"_3z5o2"};
+var css$e = {"field":"_2DYF1","hidden":"_3z5o2"};
 
 var StretchTitleField = function StretchTitleField(_ref) {
   var value = _ref.value,
@@ -680,17 +722,17 @@ var StretchTitleField = function StretchTitleField(_ref) {
       props = _objectWithoutPropertiesLoose(_ref, ["value", "placeholder", "className"]);
 
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$d.field, className)
+    className: cx(css$e.field, className)
   }, /*#__PURE__*/React__default.createElement("input", _extends({
     type: "text",
     placeholder: placeholder,
     value: value
   }, props)), /*#__PURE__*/React__default.createElement("div", {
-    className: css$d.hidden
+    className: css$e.hidden
   }, value.length ? value : placeholder));
 };
 
-var css$e = {"field":"_3PgPN","textarea":"_2Ok_K","label":"_1qnsP","error":"_1C6bH"};
+var css$f = {"field":"_3PgPN","textarea":"_2Ok_K","label":"_1qnsP","error":"_1C6bH"};
 
 var TextAreaField = function TextAreaField(_ref) {
   var label = _ref.label,
@@ -703,23 +745,23 @@ var TextAreaField = function TextAreaField(_ref) {
 
   var hasErrors = Boolean(errors.length);
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$e.field, className, size, {
+    className: cx(css$f.field, className, size, {
       disabled: props.disabled
     })
   }, /*#__PURE__*/React__default.createElement("label", null, label && /*#__PURE__*/React__default.createElement("div", {
-    className: css$e.label
+    className: css$f.label
   }, label), /*#__PURE__*/React__default.createElement("div", {
-    className: css$e.textarea
+    className: css$f.textarea
   }, /*#__PURE__*/React__default.createElement("textarea", _extends({
     className: cx({
       error: hasErrors
     })
   }, props))), hasErrors && /*#__PURE__*/React__default.createElement("div", {
-    className: css$e.error
+    className: css$f.error
   }, errors.join(', '))));
 };
 
-var css$f = {"tooltip":"_rE8Jn"};
+var css$g = {"tooltip":"_rE8Jn"};
 
 var Tooltip = function Tooltip(_ref) {
   var children = _ref.children,
@@ -742,12 +784,12 @@ var Tooltip = function Tooltip(_ref) {
     placement: placement,
     trigger: trigger,
     overlay: /*#__PURE__*/React__default.createElement("div", {
-      className: css$f.tooltip
+      className: css$g.tooltip
     }, overlayContent)
   }, props), children);
 };
 
-var css$g = {"switcher":"_3NMzC"};
+var css$h = {"switcher":"_3NMzC"};
 
 var ViewSwitcher = function ViewSwitcher(_ref) {
   var _ref$value = _ref.value,
@@ -770,7 +812,7 @@ var ViewSwitcher = function ViewSwitcher(_ref) {
   };
 
   return /*#__PURE__*/React__default.createElement("div", {
-    className: cx(css$g.switcher, stateValue, className),
+    className: cx(css$h.switcher, stateValue, className),
     onClick: toggleValue
   }, /*#__PURE__*/React__default.createElement("span", {
     className: "mdi mdi-view-grid"
@@ -779,5 +821,5 @@ var ViewSwitcher = function ViewSwitcher(_ref) {
   }));
 };
 
-export { AccessForbidden, Avatar, Button, CheckboxField, Dropdown, Loader, MarkdownRender, Modal, ProgressBar, SearchField, SelectField, SliderField, Spinner, StretchTitleField, TextAreaField, TextField, Tooltip, ViewSwitcher };
+export { AccessForbidden, Avatar, Button, CheckboxField, Copy, Dropdown, Loader, MarkdownRender, Modal, ProgressBar, SearchField, SelectField, SliderField, Spinner, StretchTitleField, TextAreaField, TextField, Tooltip, ViewSwitcher };
 //# sourceMappingURL=index.modern.js.map

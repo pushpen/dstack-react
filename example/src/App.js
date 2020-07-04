@@ -5,8 +5,7 @@ import 'dstack-web-components/dist/index.css';
 import {  } from 'dstack-web-components'
 
 const App = () => {
-  return <div>
-
+  return <div style={{display: 'flex'}}>
   </div>
 }
 

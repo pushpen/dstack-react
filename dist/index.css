@@ -450,6 +450,44 @@ button._2lKoS {
         margin-left: 6px;
     }
 
+._3J5hd {
+    position: relative;
+}
+._3RWnQ {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 4px);
+    height: 26px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 12px;
+    line-height: 26px;
+    color: rgb(57, 213, 147);
+    background: rgb(255, 255, 255);
+    box-shadow: 0 4px 20px rgba(65, 50, 90, .06);
+    transform: translateY(-50%);
+    border-radius: 4px;
+    transition: opacity .2s;
+    white-space: nowrap;
+}
+._3RWnQ:not(.is-show) {
+        opacity: 0;
+    }
+._2YqEb {
+    font-size: 14px;
+    line-height: 16px;
+    color: rgb(180, 184, 199);
+    transition: color .2s;
+    cursor: pointer;
+}
+._2YqEb:hover {
+        color: rgb(134, 166, 221);
+    }
+._2YqEb ._25GMO {
+        font-size: 14px;
+        margin-right: 2px;
+    }
+
 ._1qRCw {
     position: relative;
     max-width: -webkit-fit-content;
@@ -2438,6 +2476,7 @@ body ._14ngc-slide-up-leavebody ._14ngc-slide-up-leave-activebody ._14ngc-placem
     box-shadow: 0 8px 24px rgba(31, 42, 81, 0.12);
     border-radius: 4px;
 }
+
 ._3NMzC {
     position: relative;
     display: flex;
