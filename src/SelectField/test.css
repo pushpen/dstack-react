@@ -1,3 +1,5 @@
+@import "styles/variables.css";
+
 :global(.select-field) {
     position: relative;
     font-size: 14px;
@@ -199,6 +201,7 @@
       }
     }
     &-dropdown {
+      z-index: var(--dropdown-z-index);
       position: absolute;
       min-height: 10px;
       max-height: 207px;

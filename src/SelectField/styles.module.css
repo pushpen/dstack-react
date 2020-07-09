@@ -251,6 +251,7 @@ body :global {
             }
         }
         &-dropdown {
+            z-index: var(--dropdown-z-index);
             position: absolute;
             min-height: 10px;
             max-height: 207px;
